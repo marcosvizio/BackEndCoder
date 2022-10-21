@@ -1,1 +1,5 @@
-[]
+[
+    {"title": "Notebook", "price": 2500, "thumbnail": "imagen.png", "id": 1},
+    {"title": "CPU", "price": 5000, "thumbnail": "imagen2.png", "id": 2},
+    {"title": "Teclado", "price": 3000, "thumbnail": "imagen3.png", "id":3}
+]

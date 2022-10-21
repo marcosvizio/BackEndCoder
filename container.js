@@ -6,7 +6,7 @@ class Contenedor {
     }
     async #readFile() {
         let productos = [];
-        let productosJson; 
+        let productosJson;
         try {
             productos = await fs.promises.readFile(this.archivo, 'utf-8');
         }catch(error){
@@ -17,6 +17,11 @@ class Contenedor {
         }
         productosJson = JSON.parse(productos);
         return productosJson;
+    }
+    getLength(){
+        const productos = fs.readFileSync(this.archivo, 'utf-8')
+        const productosJson = JSON.parse(productos)
+        return productosJson.length
     }
     save(prod) {
         const productos = fs.readFileSync(this.archivo, 'utf-8')
@@ -54,7 +59,7 @@ class Contenedor {
             console.log(productoId);
             return productoId;
         } else {
-            console.log("No se encontro el producto");
+            console.log(`No hay ningun producto con ese ID: ${productoId}`);
             return null;
         }
 
@@ -93,4 +98,4 @@ class Contenedor {
     }
 }
 
-module.exports = Contenedor;    
+module.exports = Contenedor;
