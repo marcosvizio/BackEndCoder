@@ -1,5 +1,20 @@
 [
-    {"title": "Notebook", "price": 2500, "thumbnail": "imagen.png", "id": 1},
-    {"title": "CPU", "price": 5000, "thumbnail": "imagen2.png", "id": 2},
-    {"title": "Teclado", "price": 3000, "thumbnail": "imagen3.png", "id":3}
+  {
+    "title": "Mouse",
+    "price": 2500,
+    "thumbnail": "imagenMouse.png",
+    "id": 4
+  },
+  {
+    "title": "Monitor ASUS",
+    "price": 5500,
+    "thumbnail": "imagenMonitorAsus.png",
+    "id": 5
+  },
+  {
+    "title": "RAM ",
+    "price": "3500",
+    "thumbnail": "imagenRAM.png",
+    "id": 6
+  }
 ]

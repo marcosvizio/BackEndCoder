@@ -52,9 +52,20 @@ class Contenedor {
             console.error("No se pudo guardar el archivo");
         }
     }
+    async saveById(prod) {
+        const productosJson = await this.#readFile();
+        const productoIndex = productosJson.find(product => parseInt(product.id) === parseInt(prod.id));
+        productosJson[productoIndex] = prod;
+        if(productosJson.length > 0){
+            await fs.promises.writeFile(this.archivo, JSON.stringify([...productosJson], null, 2), "utf-8");
+            return prod.id;
+        } else {
+            return productoIndex;
+        }
+    }
     async getById(id) {
         const productosJson = await this.#readFile();
-        const productoId = productosJson.find(prod => prod.id === id);
+        const productoId = productosJson.find(prod => prod.id == id);
         if (productoId) {
             console.log(productoId);
             return productoId;
@@ -76,10 +87,10 @@ class Contenedor {
     }
     async deleteById(id) {
         const productosJson = await this.#readFile();
-        const productoDel = productosJson.find(prod => prod.id !== id)
+        const productoDel = productosJson.filter(prod => parseInt(prod.id) !== parseInt(id))
         if (productoDel) {
             try {
-                await fs.promises.writeFile(this.archivo, JSON.stringify([...productosJson],null,2), 'utf-8');
+                await fs.promises.writeFile(this.archivo, JSON.stringify([...productoDel],null,2), 'utf-8');
                 console.log("Producto eliminado");
             } catch(err) {
                 console.error(err);
