@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Mouse",
+    "price": 2500,
+    "thumbnail": "imagenMouse.png",
+    "id": 4
+  },
+  {
+    "title": "Monitor ASUS",
+    "price": 5500,
+    "thumbnail": "imagenMonitorAsus.png",
+    "id": 5
+  },
+  {
+    "title": "RAM ",
+    "price": "3500",
+    "thumbnail": "imagenRAM.png",
+    "id": 6
+  }
+]
