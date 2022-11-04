@@ -1,0 +1,5 @@
+[
+    {title: Notebook, price: 2500, thumbnail: imagen.png},
+    {title: CPU, price: 5000, thumbnail: imagen2.png},
+    {title: Teclado, price: 3000, thumbnail: imagen3.png}
+]

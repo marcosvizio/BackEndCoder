@@ -4,18 +4,23 @@ const router = express.Router()
 
 const Contenedor = require('../../../container')
 
-const negocio = new Contenedor('./productos.txt')
+const negocio = new Contenedor('./productos.json')
 
-router.get('/', async (_req, res, next) => {
+router.get('/', async (_req, res) => {
     try{
         const allProducts = await negocio.getAll()
-        res.status(200).json(allProducts)
+        const listProducts = allProducts.length > 0;
+        res.status(200).render("pages/tablaProductos", {
+            listProducts, 
+            allProducts,
+            nav: "tablaProductos"
+        })
     }catch(err){
-        next(err)
+        console.log(err);
     }
 })
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res) => {
     try {
         const { id } = req.params
         const selected = await negocio.getById(id)
@@ -24,20 +29,17 @@ router.get("/:id", async (req, res, next) => {
             data: selected
         })
     } catch (err) {
-        next(err)
+        console.log(err);
     }
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     try {
         const { body } = req
         negocio.save(body)
-        res.status(200).json({
-            success: true,
-            data: body
-        })
+        res.status(200).render("pages/tablaProductos")
     } catch (err) {
-        next(err)
+        console.log(err);
     }
 })
 
@@ -52,14 +54,14 @@ router.put("/:id", async (req, res) => {
     } else {
         res.json({
             ok: false,
-            mensaje: 'El post no se pudo editar ',
-            error: 'producto no encontrado',
+            mensaje: 'El POST no se pudo editar',
+            error: 'Producto no encontrado',
             id: productoCreado
         })
     }
 })
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", (req, res) => {
     try {
         const { id } = req.params
         negocio.deleteById(id)
@@ -68,7 +70,7 @@ router.delete("/:id", (req, res, next) => {
             message: `El producto elegido ha sido eliminado`
         })
     } catch (err) {
-        next(err)
+        console.log(err);
     }
 })
 
