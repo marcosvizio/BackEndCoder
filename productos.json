@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Mouse",
+    "price": 2500,
+    "thumbnail": "https://www.pngfind.com/pngs/m/247-2473217_gaming-mouse-png-asus-rog-puggio-transparent-png.png",
+    "id": 4
+  },
+  {
+    "title": "Monitor",
+    "price": 5500,
+    "thumbnail": "https://www.pngfind.com/pngs/m/13-139972_monitor-definicion-de-monitor-de-computadora-hd-png.png",
+    "id": 5
+  },
+  {
+    "title": "CPU",
+    "price": "3500",
+    "thumbnail": "https://www.pngfind.com/pngs/m/648-6489553_cpu-cabinet-png-photo-intex-cpu-transparent-png.png",
+    "id": 6
+  }
+]
