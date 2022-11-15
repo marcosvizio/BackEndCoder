@@ -52,6 +52,17 @@ class Contenedor {
             console.error("No se pudo guardar el archivo");
         }
     }
+    saveMessage(prod) {
+        const productos = fs.readFileSync(this.archivo, 'utf-8')
+        const productosJson = JSON.parse(productos)
+        try {
+                productosJson.push(prod)
+                fs.writeFileSync(this.archivo, JSON.stringify(productosJson,null,2))
+                return prod;
+        } catch {
+            console.error("No se pudo guardar el archivo");
+        }
+    }
     async saveById(prod) {
         const productosJson = await this.#readFile();
         const productoIndex = productosJson.find(product => parseInt(product.id) === parseInt(prod.id));
