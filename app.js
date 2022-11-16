@@ -20,15 +20,27 @@ app.set("view engine", "ejs");
 
 app.use(express.static( __dirname + '/public'));
 
-app.get("/", (_req,res) => {
-    res.status(200).render("pages/cargaProductos", {
-        nav: "cargaProductos"
-    })
+
+
+app.get("/", async (_req,res) => {
+    try{
+        const allProducts = await productos.getAll()
+        const listProducts = allProducts.length > 0;
+        res.status(200).render("pages/cargaProductos", {
+        nav: "cargaProductos",
+        allProducts,
+        listProducts
+        })
+    }catch(err){
+        console.log(err);
+    }
 });
 
 app.use("/api", indexRouter);
 
 const Contenedor = require('./container')
+
+const productos = new Contenedor('./productos.json')
 
 const messages = new Contenedor('./messages.json')
 
@@ -40,6 +52,7 @@ io.on("connection", async socket => {
         messages.saveMessage(messageData)
         io.sockets.emit("NEW_MESSAGE", messageData)
     })
+    socket.emit("UPDATE_PRODUCTS", await productos.getAll())
 })
 
 module.exports = http;

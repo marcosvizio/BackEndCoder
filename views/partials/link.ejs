@@ -1,7 +1,7 @@
 <div>
-    <% if (nav !== "tablaProductos") { %> 
-        <a href="/api/productos" class="btn btn-dark">Lista Productos</a>
-    <% } else { %> 
+    <% if (nav == "tablaProductos") { %> 
         <a href="/" class="btn btn-dark">Carga Productos</a>
+    <% } else { %>
+        <a href="/api/productos" class="btn btn-dark">Lista Productos</a>
     <% } %> 
 </div>

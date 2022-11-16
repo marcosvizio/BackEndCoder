@@ -33,11 +33,17 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { body } = req
         negocio.save(body)
-        res.status(200).render("pages/tablaProductos")
+        const allProducts = await negocio.getAll()
+        const listProducts = allProducts.length > 0;
+        res.status(200).render("pages/cargaProductos", {
+            nav: "cargaProductos",
+            allProducts,
+            listProducts
+        })
     } catch (err) {
         console.log(err);
     }
