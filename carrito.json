@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Monitor ASUS",
+    "price": 5500,
+    "thumbnail": "imagenMonitorAsus.png",
+    "id": "1"
+  },
+  {
+    "title": "Notebook HP",
+    "price": 5000,
+    "thumbnail": "imagenNote.png",
+    "id": "2"
+  },
+  {
+    "id": 3
+  }
+]

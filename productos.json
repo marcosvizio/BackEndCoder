@@ -1,20 +1,32 @@
 [
   {
-    "title": "Mouse",
-    "price": 2500,
-    "thumbnail": "https://www.pngfind.com/pngs/m/247-2473217_gaming-mouse-png-asus-rog-puggio-transparent-png.png",
+    "title": "Monitor ASUS",
+    "price": 5500,
+    "thumbnail": "imagenMonitorAsus.png",
+    "id": "1"
+  },
+  {
+    "title": "Notebook HP",
+    "price": 5000,
+    "thumbnail": "imagenNote.png",
+    "id": "2"
+  },
+  {
+    "title": "Notebook HP",
+    "price": 5000,
+    "thumbnail": "imagenNote.png",
+    "id": "3"
+  },
+  {
+    "title": "Monitor ASUS",
+    "price": 5500,
+    "thumbnail": "imagenMonitorAsus.png",
     "id": 4
   },
   {
-    "title": "Monitor",
+    "title": "Monitor ASUS",
     "price": 5500,
-    "thumbnail": "https://www.pngfind.com/pngs/m/13-139972_monitor-definicion-de-monitor-de-computadora-hd-png.png",
+    "thumbnail": "imagenMonitorAsus.png",
     "id": 5
-  },
-  {
-    "title": "CPU",
-    "price": "10000",
-    "thumbnail": "imgCpu.png",
-    "id": 6
   }
 ]

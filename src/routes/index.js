@@ -2,6 +2,8 @@ const express = require('express');
 
 const productosRouter = require("./productos/productos.router");
 
+const carritoRouter = require("./carrito/carrito.router")
+
 const router = express.Router();
 
 router.get("/health", (_req,res) => {
@@ -11,6 +13,7 @@ router.get("/health", (_req,res) => {
         environment: process.env.ENVIRONMENT || "not found"
     })
 })
-.use("/productos", productosRouter);
+.use("/productos", productosRouter)
+.use("/carrito", carritoRouter)
 
 module.exports = router;

@@ -63,15 +63,18 @@ class Contenedor {
             console.error("No se pudo guardar el archivo");
         }
     }
-    async saveById(prod) {
+    async saveById(prod, idProd) {
         const productosJson = await this.#readFile();
-        const productoIndex = productosJson.find(product => parseInt(product.id) === parseInt(prod.id));
-        productosJson[productoIndex] = prod;
+        Object.assign(prod,{
+            id: idProd
+        })
+        let productoSelected = productosJson.findIndex(producto => parseInt(producto.id) === parseInt(prod.id));
+        productosJson.splice(productoSelected, 1, prod)
         if(productosJson.length > 0){
             await fs.promises.writeFile(this.archivo, JSON.stringify([...productosJson], null, 2), "utf-8");
-            return prod.id;
+            return prod;
         } else {
-            return productoIndex;
+            return productoSelected;
         }
     }
     async getById(id) {
@@ -96,6 +99,16 @@ class Contenedor {
             return null;
         }
     }
+    async getByUserId(idUser) {
+        const productosJson = await this.#readFile();
+        const productoId = productosJson.filter(producto => parseInt(producto.idUser) === parseInt(idUser))
+        if (productoId) {
+            return productoId;
+        } else {
+            console.log("Este usuario no tiene productos en el carrito");
+            return null;
+        }
+    }
     async deleteById(id) {
         const productosJson = await this.#readFile();
         const productoDel = productosJson.filter(prod => parseInt(prod.id) !== parseInt(id))
@@ -108,6 +121,19 @@ class Contenedor {
             }
         } else {
             console.log("No se encontro el producto que desea eliminar");
+        }
+    }
+    async deleteByUserAndIdProduct(idProduct, idUser) {
+        const productosJson = await this.#readFile();
+        const productoNew = productosJson.filter(producto => +producto.idProduct !== +idProduct)
+        if (productoNew) {
+            try {
+                await fs.promises.writeFile(this.archivo, JSON.stringify([...productoNew], null, 2), 'utf8')
+            } catch(err) {
+                console.log(err)
+            }
+        } else {
+            console.log("No existe producto con ese ID");
         }
     }
     async deleteAll() {

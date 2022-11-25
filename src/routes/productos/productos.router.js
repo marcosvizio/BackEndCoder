@@ -50,21 +50,18 @@ router.post('/', async (req, res) => {
 })
 
 router.put("/:id", async (req, res) => {
-    const productoCreado = await negocio.saveById(req.body)
-    if (productoCreado > 0){
+    try {
+        const productoSelected = await negocio.saveById(req.body, req.params.id)
+        console.log(productoSelected);
         res.json({
-            ok: true,
-            mensaje: 'El Post se edito correctamente',
-            id: productoCreado
-        })
-    } else {
-        res.json({
-            ok: false,
-            mensaje: 'El POST no se pudo editar',
-            error: 'Producto no encontrado',
-            id: productoCreado
-        })
+                ok: true,
+                mensaje: 'El Post se edito correctamente',
+                id: productoSelected
+            });
+    } catch (err) {
+        console.log(err);
     }
+    
 })
 
 router.delete("/:id", (req, res) => {
@@ -79,5 +76,6 @@ router.delete("/:id", (req, res) => {
         console.log(err);
     }
 })
+
 
 module.exports = router;
